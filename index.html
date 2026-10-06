@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEWAYS | Grand Restaurant & Lounge - Toshkent</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#f9d976',
+                            500: '#d4af37',
+                            600: '#b8942b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom Luxury Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0b0d11] text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- TOP PROMO BANNER -->
+    <aside aria-label="Aksiya e'loni" class="bg-gradient-to-r from-amber-950/80 via-black to-amber-950/80 border-b border-amber-500/20 text-xs py-2 px-4 text-center">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-slate-300">
+            <div class="flex items-center gap-2 mx-auto sm:mx-0">
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold uppercase text-[10px] tracking-wider border border-amber-500/30">Maxsus taklif</span>
+                <span>Birinchi onlayn buyurtmangiz uchun <strong class="text-amber-400 font-mono">DEWAYS10</strong> promo-kodi orqali 10% chegirma oling!</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-xs text-slate-400">
+                <span><i class="fa-regular fa-clock text-amber-400 mr-1.5"></i> Har kuni: 10:00 - 23:30</span>
+                <a href="tel:+998930971880" class="hover:text-amber-400 transition-colors"><i class="fa-solid fa-phone text-amber-400 mr-1.5"></i> +998 93 097 18 80</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-black font-extrabold text-2xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div>
+                    <span class="font-serif-luxury text-2xl font-bold tracking-wider text-gold-gradient block leading-none">DEWAYS</span>
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-slate-400 font-semibold">Grand Restaurant</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#home" class="hover:text-amber-400 transition-colors">Bosh sahifa</a>
+                <a href="#menu" class="hover:text-amber-400 transition-colors">Menyu & Taomlar</a>
+                <a href="#reservation" class="hover:text-amber-400 transition-colors">Stol band qilish</a>
+                <a href="#about" class="hover:text-amber-400 transition-colors">Biz haqimizda</a>
+                <a href="#chefs" class="hover:text-amber-400 transition-colors">Oshpazlar</a>
+                <a href="#reviews" class="hover:text-amber-400 transition-colors">Sharhlar</a>
+                <a href="#contact" class="hover:text-amber-400 transition-colors">Manzil</a>
+            </nav>
+
+            <!-- Actions (Cart & Reservation Button) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Cart Button -->
+                <button id="navbar-cart-btn" onclick="toggleCartDrawer()" class="relative p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-500/40 text-slate-200 transition-all flex items-center gap-2.5" title="Savat">
+                    <i class="fa-solid fa-bag-shopping text-amber-400 text-lg"></i>
+                    <span class="hidden sm:inline text-xs font-semibold">Savat</span>
+                    <span class="cart-count-badge absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-amber-500 text-black text-xs font-black flex items-center justify-center shadow-md shadow-amber-500/50" style="display: none;">0</span>
+                </button>
+
+                <!-- Book Table CTA -->
+                <a href="#reservation" class="hidden sm:flex btn-gold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold items-center gap-2">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Stol band qilish</span>
+                </a>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button onclick="toggleMobileNav()" class="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white" title="Menyu">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Dropdown -->
+        <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0d1017] px-4 py-5 space-y-3">
+            <a href="#home" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Bosh sahifa</a>
+            <a href="#menu" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Menyu & Taomlar</a>
+            <a href="#reservation" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Stol band qilish</a>
+            <a href="#about" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Biz haqimizda</a>
+            <a href="#chefs" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Oshpazlar</a>
+            <a href="#reviews" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Mijozlar fikrlari</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Manzil va Aloqa</a>
+            <div class="pt-3 border-t border-white/10">
+                <a href="#reservation" onclick="toggleMobileNav()" class="btn-gold w-full py-3 rounded-xl text-center font-bold text-xs uppercase block">
+                    Stol band qilish
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6">
+        <!-- Hero Ambient Glow & Texture -->
+        <div class="hero-glow"></div>
+        <div class="hero-glow-secondary"></div>
+        <div class="absolute inset-0 z-0 opacity-25">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80" alt="Restaurant Interior" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0d11] via-[#0b0d11]/80 to-[#0b0d11]/90"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center">
+            <!-- Status Badge -->
+            <div class="anim-float inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-amber-500/30 backdrop-blur-md mb-6 shadow-lg shadow-amber-500/10">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 status-pulse"></span>
+                <span class="text-xs font-semibold text-amber-300">Hozir ochiq • 10:00 dan 23:30 gacha mehmonga tayyormiz</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="reveal font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+                Sharqona Mehmondo'stlik &amp; <br>
+                <span class="text-gold-gradient italic">Oliy Gastronomiya</span>
+            </h1>
+
+            <p class="reveal reveal-delay-1 mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+                Toshkent qalbida haqiqiy o'tin olovida pishirilgan nozik go'shtlar, an'anaviy to'y oshi, xalqaro taomlar va mualliflik desertlarining betakror lazzatidan bahramand bo'ling.
+            </p>
+
+            <!-- Buttons -->
+            <div class="reveal reveal-delay-2 mt-10 flex flex-wrap items-center justify-center gap-4">
+                <a href="#menu" class="btn-gold px-8 py-4 rounded-2xl text-sm font-bold flex items-center gap-3">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>Menyuni ko'rish</span>
+                </a>
+                <a href="#reservation" class="btn-outline-gold px-8 py-4 rounded-2xl text-sm font-bold flex items-center gap-3">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span>Stol band qilish</span>
+                </a>
+            </div>
+
+            <!-- Features Pills -->
+            <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-10 border-t border-white/10 text-left">
+                <div class="reveal flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">100% Halol</div>
+                        <div class="text-xs text-slate-400">Sertifikatlangan go'sht</div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-1 flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">35-45 daqiqa</div>
+                        <div class="text-xs text-slate-400">Tezkor yetkazib berish</div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-2 flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">Jonli Musiqa</div>
+                        <div class="text-xs text-slate-400">Har oqshom 19:30 dan</div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-3 flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-champagne-glasses"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">VIP Xonalar</div>
+                        <div class="text-xs text-slate-400">Maxsus tadbirlar uchun</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE MENU SECTION -->
+    <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Bizning Takliflar</span>
+            <h2 class="font-serif-luxury text-3xl sm:text-5xl font-bold text-white mt-2">Restoran Menyu Katalogi</h2>
+            <p class="text-slate-400 mt-4 text-sm sm:text-base">
+                Har bir taom sara ingredientlar va bosh oshpazimizning mualliflik retseptlari asosida mehr bilan tayyorlanadi.
+            </p>
+        </div>
+
+        <!-- Controls Bar (Search, Category Pills, Sort) -->
+        <div class="space-y-6 mb-10">
+            <!-- Search & Sort Row -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <!-- Search Box -->
+                <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Taom yoki masalliq qidirish..." 
+                        class="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors">
+                </div>
+
+                <!-- Sort dropdown -->
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                    <span class="text-xs text-slate-400 whitespace-nowrap"><i class="fa-solid fa-arrow-down-short-wide mr-1 text-amber-400"></i> Saralash:</span>
+                    <select id="sort-select" class="bg-white/5 border border-white/10 text-slate-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-amber-400">
+                        <option value="popular" class="bg-slate-900">Mashhurlik bo'yicha</option>
+                        <option value="price-low" class="bg-slate-900">Narx: Avval arzonroq</option>
+                        <option value="price-high" class="bg-slate-900">Narx: Avval qimmatroq</option>
+                        <option value="rating" class="bg-slate-900">Reyting bo'yicha</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Categories Scroll Container -->
+            <div id="categories-container" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+
+        <!-- Dishes Grid -->
+        <div id="dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="dishes-empty" class="hidden text-center py-20">
+            <div class="w-16 h-16 rounded-full bg-white/5 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Hech narsa topilmadi</h3>
+            <p class="text-xs text-slate-400 mt-1">Qidiruv so'zini o'zgartirib ko'ring yoki boshqa toifani tanlang.</p>
+        </div>
+    </section>
+
+    <!-- ATMOSPHERE & GALLERY -->
+    <section class="py-20 bg-[#0e1118] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Atmosfera & Interyer</span>
+                <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-white mt-2">Unutilmas Oqshomlar Maskani</h2>
+                <p class="text-slate-400 mt-3 text-sm">
+                    Klassik sharqona naqshlar va yevropacha minimalizm uyg'unligida yaratilgan hashamatli muhit.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card reveal rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Asosiy Zal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h4 class="text-lg font-bold text-white">Asosiy Grand Zal</h4>
+                            <p class="text-xs text-slate-300">120 kishilik sig'im, jonli musiqa sahnasi bilan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal reveal-delay-1 rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80" alt="VIP Xonalar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h4 class="text-lg font-bold text-white">Alohida VIP Kabinalar</h4>
+                            <p class="text-xs text-slate-300">Shaxsiy ofitsiant, karaoke va to'liq maxfiylik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal reveal-delay-2 rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Yozgi Terrasa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h4 class="text-lg font-bold text-white">Yozgi Ochiq Terrasa</h4>
+                            <p class="text-xs text-slate-300">Toza havo, fontanlar va ko'kalamzorlashtirilgan hudud</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLE RESERVATION SECTION -->
+    <section id="reservation" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+        <div class="glass-card reveal rounded-3xl p-8 sm:p-12 lg:p-16 border border-amber-500/30 relative overflow-hidden">
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Info Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Onlayn Joy Band Qilish</span>
+                    <h2 class="font-serif-luxury text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        Sevimli Stolingizni <span class="text-gold-gradient">Oldindan Band Qiling</span>
+                    </h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Kechki ovqat, romantik sana yoki rasmiy biznes uchrashuv uchun eng qulay stolni onlayn bir daqiqada bron qiling. Biz sizning tashrifingizni oliy darajada kutib olamiz.
+                    </p>
+
+                    <div class="space-y-4 pt-4 border-t border-white/10 text-xs text-slate-300">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-amber-400 text-sm"></i>
+                            <span>Oldindan to'lov talab qilinmaydi</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-amber-400 text-sm"></i>
+                            <span>Bron qilingandan so'ng darhol SMS tasdiqnoma beriladi</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-amber-400 text-sm"></i>
+                            <span>Tug'ilgan kun egalari uchun restorandan maxsus syurpriz desert</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400">Tezkor bron qilish uchun telefon:</div>
+                            <a href="tel:+998930971880" class="text-base font-bold text-white hover:text-amber-400 transition-colors">+998 93 097 18 80</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Right -->
+                <div class="lg:col-span-7 bg-[#10141d] p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
+                    <form id="booking-form" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Ismingiz *</label>
+                                <input type="text" id="reserve-name" required placeholder="Masalan: Sardor Aliyev" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Telefon raqamingiz *</label>
+                                <input type="tel" id="reserve-phone" required placeholder="+998 93 097 18 80" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Mehmonlar soni</label>
+                                <select id="reserve-guests" class="w-full px-4 py-3 bg-[#151a24] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                                    <option value="1-2">1 - 2 kishi (Juftlik)</option>
+                                    <option value="3-4" selected>3 - 4 kishi (Oila)</option>
+                                    <option value="5-8">5 - 8 kishi (Katta davra)</option>
+                                    <option value="8+ (VIP)">8+ kishi (VIP xona)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Tashrif sanasi *</label>
+                                <input type="date" id="reserve-date" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Vaqt *</label>
+                                <select id="reserve-time" required class="w-full px-4 py-3 bg-[#151a24] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                                    <option value="12:00">12:00 (Tushlik)</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="18:00">18:00 (Kechki ovqat)</option>
+                                    <option value="19:30" selected>19:30 (Jonli musiqa)</option>
+                                    <option value="21:00">21:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Zone Selection -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Restoran hududini tanlang:</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="table-seat-option">
+                                    <input type="radio" name="reserve_zone" value="Asosiy zal" checked class="hidden">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-300 hover:border-amber-400/50">
+                                        <i class="fa-solid fa-champagne-glasses block text-base text-amber-400 mb-1"></i>
+                                        Asosiy zal
+                                    </div>
+                                </label>
+                                <label class="table-seat-option">
+                                    <input type="radio" name="reserve_zone" value="Yozgi veranda" class="hidden">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-300 hover:border-amber-400/50">
+                                        <i class="fa-solid fa-cloud-sun block text-base text-amber-400 mb-1"></i>
+                                        Yozgi terasa
+                                    </div>
+                                </label>
+                                <label class="table-seat-option">
+                                    <input type="radio" name="reserve_zone" value="VIP xona" class="hidden">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-300 hover:border-amber-400/50">
+                                        <i class="fa-solid fa-crown block text-base text-amber-400 mb-1"></i>
+                                        VIP kabina
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Maxsus istaklar (ixtiyoriy)</label>
+                            <input type="text" id="reserve-notes" placeholder="Masalan: Deraza yonida, romantik shamlar, tug'ilgan kun bezagi..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                        </div>
+
+                        <button type="submit" class="btn-gold w-full py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Stolni tasdiqlash va bron qilish</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & CHEFS SECTION -->
+    <section id="about" class="py-24 bg-[#0e1118] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="space-y-6 reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Bizning Tarix &amp; Falsafa</span>
+                    <h2 class="font-serif-luxury text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        San'at Darajasiga Ko'tarilgan <span class="text-gold-gradient">Pazandachilik</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        "DEWAYS" restorani 2018-yilda Toshkent shahrida tashkil topgan bo'lib, o'zbek mehmondo'stligining ko'p asrlik an'analarini zamonaviy Yevropa oshpazlik texnikasi bilan uyg'unlashtiradi.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Biz taomlarimizda faqat tabiiy tog' ziravorlari, eng sara "Devzira" guruchi va maxsus yetishtirilgan mramor go'shtlardan foydalanamiz. Biz uchun har bir mehmon — oilamiz a'zosi.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+                        <div>
+                            <div class="text-3xl font-extrabold text-amber-400 font-serif-luxury">15+</div>
+                            <div class="text-xs text-slate-400 mt-1">Yillik tajriba</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-amber-400 font-serif-luxury">45+</div>
+                            <div class="text-xs text-slate-400 mt-1">Oliy toifali oshpaz</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-amber-400 font-serif-luxury">120K+</div>
+                            <div class="text-xs text-slate-400 mt-1">Mamnun mehmonlar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal reveal-delay-1">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Restaurant Story" class="w-full h-[450px] object-cover">
+                    </div>
+                    <div class="anim-float-delayed absolute -bottom-6 -left-6 bg-amber-500 text-black p-5 rounded-2xl shadow-xl max-w-xs hidden sm:block">
+                        <i class="fa-solid fa-quote-left text-2xl opacity-40"></i>
+                        <p class="text-xs font-bold mt-1">"Haqiqiy taom yurakdan tayyorlangandagina inson ruhiga orom beradi."</p>
+                        <p class="text-[10px] uppercase font-extrabold mt-2 tracking-wider">— Shavkat Aliyev, Bosh Oshpaz</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chefs Showcase -->
+            <div id="chefs" class="pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Ustalar jamoasi</span>
+                    <h3 class="font-serif-luxury text-3xl font-bold text-white mt-1">Oshpazlarimiz bilan tanishing</h3>
+                </div>
+                <div id="chefs-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Populated by app.js -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS & REVIEWS SECTION -->
+    <section id="reviews" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-14">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Mijozlarimiz Bahosi</span>
+                <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-white mt-2">Mehmonlarimiz Nima Deydi?</h2>
+            </div>
+            <button onclick="openAddReviewModal()" class="btn-outline-gold px-6 py-3 rounded-xl text-xs font-bold flex items-center gap-2">
+                <i class="fa-solid fa-pen-nib"></i>
+                <span>Sharh qoldirish</span>
+            </button>
+        </div>
+
+        <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Dynamically populated by app.js -->
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="contact" class="py-24 bg-[#0e1118] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                <!-- Contact info -->
+                <div class="lg:col-span-5 glass-card p-8 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Biz bilan aloqa</span>
+                        <h2 class="font-serif-luxury text-3xl font-bold text-white mt-2">Tashrif buyuring</h2>
+                        <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+                            Restoranimiz poytaxtning eng nufuzli manzilida, shinam va bepul avtoturargoh bilan joylashgan.
+                        </p>
+
+                        <div class="mt-8 space-y-5 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">Manzil:</div>
+                                    <div class="font-medium text-white">Toshkent sh., Mirobod tumani, Amir Temur shoh ko'chasi, 48-uy</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">Telefon raqamlar:</div>
+                                    <a href="tel:+998930971880" class="font-medium text-white hover:text-amber-400 block transition-colors">+998 93 097 18 80</a>
+                                    <div class="text-xs text-slate-400">Yetkazib berish va stol band qilish</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">Ish vaqti:</div>
+                                    <div class="font-medium text-white">Har kuni: 10:00 dan 23:30 gacha</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-3">
+                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Styled Map -->
+                <div class="lg:col-span-7 rounded-3xl overflow-hidden border border-white/10 relative min-h-[380px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.887858348922!2d69.2787093766288!3d41.31115197130983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b2931f41f23%3A0x81095e06b654b845!2sAmir%20Temur%20Square!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; min-height: 400px; filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500 text-black flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <span class="font-serif-luxury font-bold text-white text-base tracking-wider">DEWAYS GRAND</span>
+            </div>
+
+            <p class="text-center">
+                &copy; 2026 DEWAYS Grand Restaurant. Barcha huquqlar himoyalangan. 100% Halol sertifikatlangan.
+            </p>
+
+            <div class="flex items-center gap-3 text-sm">
+                <span class="text-slate-500">To'lovlar:</span>
+                <span class="bg-white/5 px-2.5 py-1 rounded text-amber-400 font-bold text-[11px]">Payme</span>
+                <span class="bg-white/5 px-2.5 py-1 rounded text-blue-400 font-bold text-[11px]">Click</span>
+                <span class="bg-white/5 px-2.5 py-1 rounded text-purple-400 font-bold text-[11px]">Uzum</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================
+         SLIDE-OVER CART DRAWER
+         =================================================== -->
+    <div id="cart-backdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#10141d] border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-amber-400 text-lg"></i>
+                <h3 class="font-bold text-white text-base">Sizning Savatingiz</h3>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="clearCart()" class="text-xs text-slate-400 hover:text-red-400 transition-colors">Tozalash</button>
+                <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <!-- Populated by app.js -->
+        </div>
+
+        <!-- Cart Empty State -->
+        <div id="cart-empty-state" class="flex-1 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-20 h-20 rounded-full bg-white/5 text-amber-400 flex items-center justify-center text-3xl mb-4">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">Savatingiz hozircha bo'sh</h4>
+            <p class="text-xs text-slate-400 mt-1 max-w-xs">Menyudan o'zingiz yoqtirgan mazali taomlarni savatga qo'shing.</p>
+        </div>
+
+        <!-- Drawer Footer / Summary -->
+        <div id="cart-footer" class="p-5 border-t border-white/10 bg-[#0d1017] space-y-4">
+            <!-- Promo Code Input -->
+            <div class="flex gap-2">
+                <input type="text" id="promo-input" placeholder="Promo-kod (masalan: DEWAYS10)" class="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs text-white uppercase focus:outline-none focus:border-amber-400">
+                <button onclick="applyPromoCode()" class="btn-outline-gold px-4 py-2 rounded-xl text-xs font-bold">Qo'llash</button>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-slate-300">
+                <div class="flex justify-between"><span>Taomlar qiymati:</span> <span id="cart-subtotal" class="font-semibold text-white">0 so'm</span></div>
+                <div class="flex justify-between"><span>Xizmat haqi (10%):</span> <span id="cart-service" class="font-semibold text-white">0 so'm</span></div>
+                <div id="cart-discount-row" class="hidden flex justify-between text-emerald-400"><span>Chegirma:</span> <span id="cart-discount">0 so'm</span></div>
+                <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/10">
+                    <span>Jami summa:</span>
+                    <span id="cart-total" class="text-amber-400 font-extrabold text-base">0 so'm</span>
+                </div>
+            </div>
+
+            <button onclick="openCheckoutModal()" class="btn-gold w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Buyurtmani rasmiylashtirish</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         DISH QUICK-VIEW MODAL
+         =================================================== -->
+    <div id="dish-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-xl bg-[#131720] border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl">
+            <div id="dish-modal-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         CHECKOUT MODAL
+         =================================================== -->
+    <div id="checkout-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-lg bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-truck-fast text-amber-400"></i>
+                    <span>Buyurtmani rasmiylashtirish</span>
+                </h3>
+                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p id="checkout-summary-text" class="text-xs text-amber-300 font-medium py-3"></p>
+
+            <form id="checkout-form" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">To'liq ismingiz *</label>
+                    <input type="text" id="checkout-name" required placeholder="Masalan: Azizbek Mahmudov" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Telefon raqamingiz *</label>
+                    <input type="tel" id="checkout-phone" required placeholder="+998 93 097 18 80" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1.5">Xizmat turi:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="order_type" value="Yetkazib berish" checked class="mr-1.5 accent-amber-400">
+                            <span class="text-slate-200">Manzilga yetkazib berish</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="order_type" value="Olib ketish" class="mr-1.5 accent-amber-400">
+                            <span class="text-slate-200">O'zi bilan olib ketish</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Yetkazib berish manzili / Mo'ljal</label>
+                    <input type="text" id="checkout-address" placeholder="Toshkent sh., Chilonzor 9, 14-uy" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1.5">To'lov usuli:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Payme" checked class="accent-amber-400">
+                            <span class="font-bold text-amber-300 text-xs">Payme</span>
+                        </label>
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Click" class="accent-amber-400">
+                            <span class="font-bold text-blue-400 text-xs">Click</span>
+                        </label>
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Naqd pul" class="accent-amber-400">
+                            <span class="font-bold text-emerald-400 text-xs">Naqd</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Izoh yoki kuryerga eslatma</label>
+                    <input type="text" id="checkout-notes" placeholder="Masalan: Qo'shimcha nonga sous qo'shilsin..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-sm">
+                        Buyurtmani tasdiqlash
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         ORDER RECEIPT MODAL
+         =================================================== -->
+    <div id="receipt-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div id="receipt-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         RESERVATION CONFIRMATION TICKET MODAL
+         =================================================== -->
+    <div id="reservation-confirm-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div id="reservation-confirm-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         ADD REVIEW MODAL
+         =================================================== -->
+    <div id="add-review-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-star text-amber-400"></i>
+                    <span>Sharh qoldirish</span>
+                </h3>
+                <button onclick="closeAddReviewModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="review-form" class="space-y-4 mt-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Ismingiz *</label>
+                    <input type="text" id="review-author" required placeholder="Masalan: Nilufar Rahimova" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Maqomingiz / Kasbingiz (ixtiyoriy)</label>
+                    <input type="text" id="review-role" placeholder="Masalan: Doimiy mehmon yoki Dizayner" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Baholang</label>
+                    <select id="review-rating" class="w-full px-3.5 py-2.5 bg-[#171c26] border border-white/10 rounded-xl text-amber-400 text-sm focus:outline-none focus:border-amber-400 font-bold">
+                        <option value="5">⭐⭐⭐⭐⭐ A'lo (5 yulduz)</option>
+                        <option value="4">⭐⭐⭐⭐ Yaxshi (4 yulduz)</option>
+                        <option value="3">⭐⭐⭐ O'rtacha (3 yulduz)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Fikringiz va taassurotingiz *</label>
+                    <textarea id="review-text" required rows="3" placeholder="Taomlarning ta'mi, xizmat ko'rsatish va atmosfera haqida yozing..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-sm">
+                    Sharhni chop etish
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP FLOATING BUTTON -->
+    <button id="scroll-top-btn" class="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-2xl bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-black border border-amber-500/40 flex items-center justify-center shadow-2xl backdrop-blur-md transition-all group" title="Yuqoriga chiqish">
+        <i class="fa-solid fa-arrow-up text-sm group-hover:-translate-y-1 transition-transform"></i>
+    </button>
+
+    <!-- FLOATING MUSIC PLAYER WIDGET -->
+    <aside aria-label="Fon musiqasi pleyeri" id="music-player-widget" class="fixed bottom-6 right-6 z-40 music-player-bar rounded-2xl p-2.5 pl-3.5 pr-4 flex items-center gap-3">
+        <!-- Equalizer / Icon Button -->
+        <button id="music-toggle-btn" onclick="toggleBackgroundMusic()" class="w-10 h-10 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 flex items-center justify-center transition-all border border-amber-500/40 relative cursor-pointer group" title="Musiqani to'xtatish / yoqish">
+            <div id="music-eq" class="eq-container">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+            </div>
+            <i id="music-play-icon" class="fa-solid fa-play text-xs hidden absolute text-amber-400"></i>
+        </button>
+
+        <!-- Info & Status -->
+        <div class="cursor-pointer select-none" onclick="toggleBackgroundMusic()">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <span id="music-live-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>DEWAYS Lounge</span>
+            </div>
+            <div id="music-status-text" class="text-xs text-slate-200 font-semibold whitespace-nowrap">
+                Musiqa yoqilmoqda...
+            </div>
+        </div>
+
+        <!-- Volume & Mute control -->
+        <div class="hidden sm:flex items-center gap-2 pl-2 border-l border-white/10">
+            <button id="music-mute-btn" onclick="toggleMusicMute()" class="text-slate-400 hover:text-amber-400 text-xs transition-colors p-1" title="Ovozni o'chirish / yoqish">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <input type="range" id="music-volume" min="0" max="1" step="0.05" value="0.35" oninput="setMusicVolume(this.value)" class="w-16 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400" title="Ovoz balandligi">
+        </div>
+    </aside>
+
+    <!-- TOAST CONTAINER (Top right for clear visibility) -->
+    <div id="toast-container" class="fixed top-24 right-6 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- SCRIPTS -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
